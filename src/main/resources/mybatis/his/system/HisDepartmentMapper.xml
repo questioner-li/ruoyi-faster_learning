@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.his.system.mapper.HisDepartmentMapper">
+
+    <resultMap type="HisDepartment" id="HisDepartmentResult">
+        <result property="departmentId"    column="department_id"    />
+        <result property="departmentName"    column="department_name"    />
+        <result property="departmentCode"    column="department_code"    />
+        <result property="departmentNum"    column="department_num"    />
+        <result property="departmentPerson"    column="department_person"    />
+        <result property="departmentPhone"    column="department_phone"    />
+        <result property="status"    column="status"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <select id="selectDepartmentList" resultMap="HisDepartmentResult">
+        select * from his_department
+        <where>
+            <if test="departmentName!=null and departmentName!=''">
+                and department_name like concat('%',#{departmentName},'%')
+            </if>
+            <if test="status!=null and status!=''">
+                and status=#{status}
+            </if>
+        </where>
+    </select>
+
+</mapper>
